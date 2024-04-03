@@ -46,6 +46,11 @@ class BundlesLoader extends Template
     private $requireJsConfig;
 
     /**
+     * @var Minification
+     */
+    protected $minification;
+
+    /**
      * @var string
      */
     protected $_template = 'MageSuite_Magepack::bundles-loader.phtml';
@@ -55,8 +60,9 @@ class BundlesLoader extends Template
      * @param DirectoryList $dir
      * @param FileManager $fileManager
      * @param PageConfig $pageConfig
-     * @param ScopeConfigInterface $scopeConfig
      * @param RequireJsConfig $requireJsConfig
+     * @param ScopeConfigInterface $scopeConfig
+     * @param Minification $minification
      * @param array $data
      */
     public function __construct(
