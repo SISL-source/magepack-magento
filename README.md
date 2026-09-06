@@ -1,27 +1,45 @@
-# MagePack Magento 2 Module
+# Magepack for Magento 2 (SISL fork)
 
-This is a Magento 2 part of Magepack that handles configuration and loading of bundles prepared by a frontend tool.
+The Magento 2 module that serves the JavaScript bundles produced by
+[Magepack](https://github.com/SISL-source/magepack). It adds an admin toggle and
+injects the correct bundle on each page type via a layout block.
 
-For detailed description of the functionalities and walkthrough please refer to [Magepack](https://github.com/magesuite/magepack).
+This is a maintained fork of
+[magesuite/magepack-magento](https://github.com/magesuite/magepack-magento),
+verified to install and run on **Magento 2.4.9 / PHP 8.4**.
 
-## Installing
+## Why this fork exists
 
-It is recommended to install this extension using composer package manager:
+The upstream module's `composer.json` declared **no `require` section at all** —
+Composer would install it on any Magento/PHP version without warning, so a shop
+could silently pull it onto an incompatible release and only discover the breakage
+in production. This fork declares proper `php` and `magento/framework` constraints,
+and is tested end-to-end on Magento 2.4.9.
 
+## What changed vs upstream
+
+- Added `require`: `php` 8.1–8.5 and `magento/framework >=103.0.4 <104`
+  (Magento 2.4.6–2.4.9), so Composer refuses incompatible installs instead of
+  failing silently later.
+- Verified on Magento 2.4.9 / PHP 8.4: `setup:upgrade`, `module:enable` and
+  bundle serving on category / product / checkout all work with no JS errors.
+
+## Install
+
+```bash
+composer require @sisl/magepack-magento
+bin/magento module:enable MageSuite_Magepack
+bin/magento setup:upgrade
 ```
-composer require creativestyle/magesuite-magepack
-```
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/magesuite/magepack-magento/tags).
+Enable at *Stores → Configuration → Advanced → Developer → JavaScript Settings →
+Enable JavaScript Bundling with Magepack* after building bundles with the
+[Magepack CLI](https://github.com/SISL-source/magepack).
 
 ## License
 
-This project is licensed under the OSL-3.0 license - see the [LICENSE.md](LICENSE.md) file for details
+OSL-3.0 — see [LICENSE](LICENSE).
 
-## Acknowledgments
+---
 
--   Authors of [Advanced JavaScript bundling guide](https://devdocs.magento.com/guides/v2.3/performance-best-practices/advanced-js-bundling.html).
--   [Magento baler](https://github.com/magento/baler) bundler.
--   Magento Community Engineering Slack.
+Maintained by [SISL](https://sisl.pl) — Magento 2 / Adobe Commerce studio.
