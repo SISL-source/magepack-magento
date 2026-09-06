@@ -1,15 +1,19 @@
 {
-  "name": "creativestyle/magesuite-magepack",
-  "description": "Module responsible for handling advanced JavaScript bundling.",
-  "homepage": "https://creativestyle.de",
-  "license": "OSL-3.0",
-  "type": "magento2-module",
-  "autoload": {
-    "files": [
-      "registration.php"
-    ],
-    "psr-4": {
-      "MageSuite\\Magepack\\": ""
+    "name": "creativestyle/magesuite-magepack",
+    "description": "Module responsible for handling advanced JavaScript bundling.",
+    "homepage": "https://creativestyle.de",
+    "license": "OSL-3.0",
+    "type": "magento2-module",
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": ">=103.0.4 <104"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageSuite\\Magepack\\": ""
+        }
     }
-  }
 }
